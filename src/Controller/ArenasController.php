@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 use App\Controller\AppController;
+use Cake\Event\Event;
+
 /**
 * Personal Controller
 * User personal interface
@@ -8,12 +10,14 @@ use App\Controller\AppController;
 */
 class ArenasController  extends AppController
 {
+
 public function index()
 {
 }
 
 public function login()
 {
+
 }
 
 public function fighter()

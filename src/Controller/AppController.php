@@ -28,6 +28,21 @@ use Cake\Event\Event;
 class AppController extends Controller
 {
 
+	public $components = array(
+	'Auth' => array(
+			'authenticate' => array(
+				'Form' => array(
+					'userModel' => 'Player',
+					'fields' => array(
+						'username' => 'email',
+						'password' => 'password'
+					)
+				)
+			)
+		)
+	
+	);
+	
     /**
      * Initialization hook method.
      *
@@ -42,7 +57,27 @@ class AppController extends Controller
         parent::initialize();
 
         $this->loadComponent('RequestHandler');
-        $this->loadComponent('Flash');
+		
+		$this->loadComponent('Flash');
+        $this->loadComponent('Auth', [
+            'loginRedirect' => [
+                'controller' => 'Players',
+                'action' => 'index'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Pages',
+                'action' => 'display',
+                'home'
+            ]
+        ]);
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['index', 'view', 'display']);
+		$this->Auth->loginAction = array('controller' => 'players', 'action' => 'login');
+		$this->Auth->logoutRedirect = array('controller' => 'players', 'action' => 'index');
+		$this->Auth->loginRedirect = array('controller' => 'players', 'action' => 'index');
     }
 
     /**
