@@ -15,11 +15,6 @@ public function index()
 {
 }
 
-public function login()
-{
-
-}
-
 public function fighter()
 {
 }

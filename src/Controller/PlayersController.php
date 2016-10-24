@@ -31,7 +31,7 @@ class PlayersController extends AppController
             $player = $this->Players->patchEntity($player, $this->request->data);
             if ($this->Players->save($player)) {
                 $this->Flash->success(__("Le joueur a été sauvegardé."));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => '../Arenas/index']);
             }
             $this->Flash->error(__("Impossible d'ajouter le joueur."));
         }

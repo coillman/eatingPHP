@@ -12,8 +12,9 @@ class PlayersTable extends Table
     public function validationDefault(Validator $validator)
     {
         return $validator
-            ->notEmpty('username', "Un nom d'utilisateur est nécessaire")
-            ->notEmpty('password', 'Un mot de passe est nécessaire');
+            ->notEmpty('email', "Un nom d'utilisateur est nécessaire")
+            ->notEmpty('password', 'Un mot de passe est nécessaire')
+			->add('password', ['length' => ['rule' => ['minLength', 3],'message' => 'Le mot de passe doit être composé de 6 caractères minimum.',]]);
     }
 	
 	public function beforeSave($event,$entity){
@@ -23,6 +24,19 @@ class PlayersTable extends Table
 	}
 	
 	public function generateId(){
-		return "aa";
+		$s = strtoupper(md5(uniqid(rand(),true))); 
+		$uniqueId = 
+        substr($s,0,8) . '-' . 
+        substr($s,8,4) . '-' . 
+        substr($s,12,4). '-' . 
+        substr($s,16,4). '-' . 
+        substr($s,20); 
+		return $uniqueId;
 	}
+	
+	public function buildRules(RulesChecker $rules)
+{
+	$rules->add($rules->isUnique(['email']),['message' => 'Cet e-mail est déjà utilisé.']);
+    return $rules;
+}
 }
