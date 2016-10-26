@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-    <title>WebArena - Incription</title>
+    <title>WebArena - Réinitialisation du mot de passe</title>
   </head>
 
   <body>
@@ -12,12 +12,11 @@
 		<section>
 			<?= $this->Form->create($player) ?>
 			<fieldset>
-				<legend><?= __('Ajouter un joueur') ?></legend>
+				<legend><?= __('Rénitialisation du mot de passe') ?></legend>
 				<?= $this->Form->input('email',['label' => 'E-mail']) ?>
-				<?= $this->Form->input('password',['label' => 'Mot de passe']) ?>
 				<?= $this->Flash->render() ?>
 			</fieldset>
-			<?= $this->Form->button(__('Inscription')); ?>
+			<?= $this->Form->button(__('Réinitialiser')); ?>
 			<?= $this->Form->end() ?>
 		</section>
 	</main>

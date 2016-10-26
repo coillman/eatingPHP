@@ -7,22 +7,16 @@ use Cake\Event\Event;
 class PlayersController extends AppController
 {
 
-    public function beforeFilter(Event $event)
+	    public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['add', 'logout']);
+        $this->Auth->allow(['add', 'logout', 'resetPassword']);
     }
-
+	
      public function index()
      {
-        $this->set('players', $this->Players->find('all'));
-    }
 
-    public function view($id)
-    {
-        $player = $this->Players->get($id);
-        $this->set(compact('player'));
-    }
+	 }
 
     public function add()
     {
@@ -30,8 +24,7 @@ class PlayersController extends AppController
         if ($this->request->is('post')) {
             $player = $this->Players->patchEntity($player, $this->request->data);
             if ($this->Players->save($player)) {
-                $this->Flash->success(__("Le joueur a été sauvegardé."));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => '../Arenas/index']);
             }
             $this->Flash->error(__("Impossible d'ajouter le joueur."));
         }
@@ -46,8 +39,14 @@ class PlayersController extends AppController
                 $this->Auth->setUser($player);
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Flash->error(__('Invalid username or password, try again'));
+            else{
+				$this->Flash->error(__('E-mail ou mot de passe invalide.'));
+			}
         }
+    }
+	
+	    public function resetPassword()
+    {
     }
 
     public function logout()
