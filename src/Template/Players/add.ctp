@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-    <title>WebArena - Incription</title>
+    <?php $this->assign('title', 'WebArena - Inscription');?>
   </head>
 
   <body>
@@ -15,7 +15,6 @@
 				<legend><?= __('Ajouter un joueur') ?></legend>
 				<?= $this->Form->input('email',['label' => 'E-mail']) ?>
 				<?= $this->Form->input('password',['label' => 'Mot de passe']) ?>
-				<?= $this->Flash->render() ?>
 			</fieldset>
 			<?= $this->Form->button(__('Inscription')); ?>
 			<?= $this->Form->end() ?>

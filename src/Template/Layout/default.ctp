@@ -26,9 +26,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+	<title><?= $this->fetch('title') ?></title>
 </head>
 <body>
     <div class="container clearfix">
+		<?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
     </div>
     <footer>

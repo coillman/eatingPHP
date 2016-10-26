@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-    <title>WebArena - Players</title>
+    <?php $this->assign('title', 'WebArena - Players');?>
   </head>
 
   <body>

@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-    <title>WebArena - Réinitialisation du mot de passe</title>
+    <?php $this->assign('title', 'WebArena - Réinitialisation du mot de passe');?>
   </head>
 
   <body>

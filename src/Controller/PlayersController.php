@@ -10,7 +10,7 @@ class PlayersController extends AppController
 	    public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['add', 'logout', 'resetPassword']);
+        $this->Auth->allow(['login','add', 'logout', 'resetPassword']);
     }
 	
      public function index()

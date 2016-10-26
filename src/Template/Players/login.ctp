@@ -2,8 +2,7 @@
 
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-
-    <title>WebArena - Connexion</title>
+	<?php $this->assign('title', 'WebArena - Connexion');?>
   </head>
 
   <body>
@@ -17,7 +16,6 @@
 				<legend><?= __("Connexion") ?></legend>
 				<?= $this->Form->input('email',['label' => 'E-mail']) ?>
 				<?= $this->Form->input('password',['label' => 'Mot de passe']) ?>
-				<?= $this->Flash->render() ?>
 			</fieldset>
 			<?= $this->Form->button(__('Se Connecter')); ?>
 			<?= $this->Form->end() ?>
