@@ -53,7 +53,7 @@ class AppController extends Controller
                 'fields' => ['username' => 'email', 'password' => 'password']]
 			],
             'loginRedirect' => [
-                'controller' => 'Players',
+                'controller' => 'Arenas',
                 'action' => 'index'
             ],
             'logoutRedirect' => [

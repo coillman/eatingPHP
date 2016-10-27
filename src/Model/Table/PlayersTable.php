@@ -23,6 +23,15 @@ class PlayersTable extends Table
 		}
 	}
 	
+	public function findPlayerByEmail($email){
+			$player = $this
+           ->find()
+           ->where(['email' => $email])
+           ->first();
+		   
+		 return $player;
+	}
+	
 	public function generateId(){
 		$s = strtoupper(md5(uniqid(rand(),true))); 
 		$uniqueId = 
@@ -31,7 +40,7 @@ class PlayersTable extends Table
         substr($s,12,4). '-' . 
         substr($s,16,4). '-' . 
         substr($s,20); 
-		return $uniqueId;
+		return strtolower($uniqueId);
 	}
 	
 	public function buildRules(RulesChecker $rules)

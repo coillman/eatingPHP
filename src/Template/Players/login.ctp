@@ -1,15 +1,8 @@
-<html lang="fr">
 
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<?php $this->assign('title', 'WebArena - Connexion');?>
-  </head>
+		<?php $this->assign('header_title', 'Connexion');?>
 
-  <body>
-	
-	<main>	
 		<section>
-		
 			<?= $this->Flash->render('auth') ?>
 			<?= $this->Form->create() ?>
 			<fieldset>
@@ -22,12 +15,4 @@
 		</section>
 		
 		<p><?php echo $this->Html->link('Mot de passe oublié', array('controller' => 'Players', 'action' => 'resetPassword')); ?></p>
-		
-	</main>
-	
-	<footer>
-		
-  	</footer>
-  </body>
-</html>
 

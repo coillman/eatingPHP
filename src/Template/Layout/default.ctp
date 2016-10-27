@@ -31,25 +31,31 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
 	<title><?= $this->fetch('title') ?></title>
 </head>
+
 <body>
+	
+	<!--Menu de navigation-->
     <nav>
         <ul>
-            <?php 
-            if(1==1){?>
-            <li><?= $this->Html->link('Jouer', array('controller' => 'Arenas', 'action' => 'index')); ?></li>
-            <li><?= $this->Html->link('Champions', array('controller' => 'Arenas', 'action' => 'index')); ?></li>
-            <li>
-                <?= $this->Html->link(
-                  $this->Html->image('menu/logo.png', array('alt' => "Web ARENA")), // Recherche dans le dossier webroot/img
-                  array('controller' => 'Arenas', 'action' => ""),
-                  array('escape' => false) // Ceci pour indiquer de ne pas échapper les caractères HTML du lien vu qu'ici tu as une image
-                );
-                ?>
-            </li>
-            <li><?= $this->Html->link('Journal', array('controller' => 'Arenas', 'action' => 'index')); ?></li>
-            <li><?= $this->Html->link('Classement', array('controller' => 'Arenas', 'action' => 'index')); ?></li>
+			<!--//If the player is logged in-->
             <?php
+            if ($this->request->session()->read('PlayerLoggedIn')){?>
+				<li><?= $this->Html->link('Jouer', array('controller' => 'Vision', 'action' => 'vision')); ?></li>
+				<li><?= $this->Html->link('Champions', array('controller' => 'Arenas', 'action' => 'index')); ?></li>
+				<li>
+					<?= $this->Html->link(
+					  $this->Html->image('menu/logo.png', array('alt' => "Web ARENA")), // Recherche dans le dossier webroot/img
+					  array('controller' => 'Arenas', 'action' => ""),
+					  array('escape' => false) // Ceci pour indiquer de ne pas échapper les caractères HTML du lien vu qu'ici il y a une image
+					);
+					?>
+				</li>
+				<li><?= $this->Html->link('Journal', array('controller' => 'Arenas', 'action' => 'index')); ?></li>
+				<li><?= $this->Html->link('Hall of fame', array('controller' => 'Arenas', 'action' => 'index')); ?></li>
+				<?php
             }
+			
+			//If the player is NOT logged in
             else { ?>
             <li><?= $this->Html->link('Connexion', array('controller' => 'Players', 'action' => 'login')); ?></li>
             <li>
@@ -59,12 +65,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                   array('escape' => false) // Ceci pour indiquer de ne pas échapper les caractères HTML du lien vu qu'ici tu as une image
                 );?>
             </li>
-                  
             <li><?= $this->Html->link('Inscription', array('controller' => 'Players', 'action' => 'add')); ?></li>
 
             <?php } ?>
-        </ul>
-    </nav>
+        </ul>    
+	</nav>
+	
+	
     <header>
           <figure class="header_left">
                 <?= $this->Html->image('champions/rogue.png', array('alt' => "Rogue")); ?>
@@ -75,13 +82,15 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <?= $this->Html->image('champions/sorcier.png', array('alt' => "Sorcier")); ?>
             </figure>
     </header>
+	
+	<!--Conteneur principal de la page -->
     <main class="container clearfix">
         <?= $this->Flash->render() ?>
-        <?= $this->fetch('header_title') ?>
-
-
+        <h1><?= $this->fetch('header_title') ?></h1>
         <?= $this->fetch('content') ?>
     </main>
+	
+	<!--Footer -->
     <footer>
         <section id="information">
             <p>Groupe SI1 : Gr1-01-AE</p>
@@ -94,8 +103,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             ); ?>
         </p>
         </section>
-        <section id="authors">Auteurs : Jeremy Ha, Emmanuel Jequier, Annelyse Nugue, Kevin Rahetilahy</section> 
-        <section id="copyright">Copyright 2016</section>
+        <section id="authors"><p>Auteurs : Jeremy Ha, Emmanuel Jequier, Annelyse Nugue, Kevin Rahetilahy<p/></section> 
+        <section id="copyright"><p>Copyright 2016</p></section>
+		
+		<?php //Ajouté par Annelyse ?>
+		<?php if ($this->request->session()->read('PlayerLoggedIn')){?>
+			<a><?= $this->Html->link('Déconnexion', array('controller' => 'Players', 'action' => 'logout')); ?></a>
+		<?php } ?>
     </footer>
 </body>
 </html>
